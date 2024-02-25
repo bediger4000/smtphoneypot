@@ -4,6 +4,8 @@ import (
 	"flag"
 	"log"
 	"os"
+
+	"smtphoneypot/session"
 	"smtphoneypot/srvr"
 )
 
@@ -24,8 +26,11 @@ func main() {
 	for {
 		conn, err := server.NextConnection()
 		if err != nil {
-			server.Debugf("making a connection: %v", err)
+			server.Debugf("making a connection: %v\n", err)
+			continue
 		}
-		conn.Close()
+
+		sess, err := session.New(conn, *debug, server.Debugf)
+		go sess.Receive()
 	}
 }
