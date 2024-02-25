@@ -39,7 +39,7 @@ func NewServer(listenAddress, hostName, logDirectory string, debug bool) (*SMTPS
 }
 
 func (s *SMTPServer) NextConnection() (net.Conn, error) {
-	s.Debugf("accepting new connection on %s", s.address)
+	s.Debugf("accepting new connection on %s\n", s.address)
 	conn, err := s.lstnr.Accept()
 	if err != nil {
 		return nil, err
