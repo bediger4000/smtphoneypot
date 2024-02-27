@@ -61,6 +61,6 @@ func (s *SMTPServer) Debugf(formatString string, a ...any) {
 	fmt.Fprintf(
 		s.serverLog,
 		fmt.Sprintf("%s\t%s", time.Now().Format(time.RFC3339), formatString),
-		a,
+		a...,
 	)
 }
